@@ -1,0 +1,337 @@
+<!DOCTYPE HTML>
+<!--
+	Massively by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title>Predicting Heart Disease</title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<noscript><link rel="stylesheet" href="assets/css/noscript.css" /></noscript>
+	</head>
+	<body class="is-preload">
+
+		<!-- Wrapper -->
+			<div id="wrapper" class="fade-in">
+
+				<!-- Title -->
+					<div id="intro">
+						<h1>Predicting Heart Disease<br /><br />
+						<p>A project for MIS749 by Cid Brownell, Kyle Kintner, and Sebastien Beauvais<br /> <br /> 
+							<a href="https://github.com/sxbeauvais/GradProjects/tree/main/MIS749">Github Files</a></p>
+						<ul class="actions">
+							<li><a href="#header" class="button icon solid solo fa-arrow-down scrolly">Continue</a></li>
+						</ul>
+					</div>
+
+				<!-- Nav -->
+					<nav id="nav">
+						<ul class="links">
+							<li class="active"><a href="index.html">Project Overview</a></li>
+
+						</ul>
+						<ul class="icons">
+							<li><a href="https://www.linkedin.com/in/sebastien-beauvais-5a7678167/" class="icon brands fa-linkedin"><span class="label">LinkedIn</span></a></li>
+							<!-- <li><a href="https://www.instagram.com/sebastienbeauvais/" class="icon brands fa-instagram"><span class="label">Instagram</span></a></li> --->
+							<li><a href="https://github.com/sxbeauvais" class="icon brands fa-github"><span class="label">GitHub</span></a></li>
+						</ul>
+					</nav>
+
+				<!-- Main -->
+					<div id="main">
+
+						<!-- Intro to Proj -->
+							<article class="post featured">
+								<header class="major">
+									<!-- <span class="date">March 18, 2022</span> --->
+									<h2><a href="#">Problem Statement</a></h2>
+									<p>Using supervised and unsupervised models, our goal was to predict if an individual had heart disease using multiple parameters.<br />
+									</p>
+								</header>
+								<a href="images/heart.jpg" class="image main"><img src="images/heart.jpg" alt="" /></a>
+								
+								<ul class="actions special">									
+									<li><a href="https://github.com/sxbeauvais/GradProjects/tree/main/MIS749" class="button large">See the code here!</a></li>
+								</ul>
+								
+							</article>
+
+						<!-- Executive Summary -->
+							<section class="post">
+								<article>
+									<h2>Executive Summary</h2>
+									<p>	Our project revolves around predicting whether or not an individual has heart disease. 
+										In the US, heart disease is the leading cause of death, claiming 659,000 lives every year and accounting 
+										for one in four deaths.1 While heart disease is a broad term encompassing several types of conditions, 
+										coronary artery disease is the most common and affects the flow of blood to the heart, 
+										which can cause a heart attack. Symptoms of heart disease include, but are not limited to:
+										<ul>
+											<li>Chest pain or discomfort</li>
+											<li>Arrhythmia</li>
+											<li>Shortness of breath, fatigue, or swelling of feet, ankles, legs, abdomen, or neck veins</li>
+										</ul>
+									</p>
+									<p>
+										There are many risk factors associated with heart disease which include:
+										<ul>
+											<li>Diabetes</li>
+											<li>Unhealthy diet</li>
+											<li>Overweight and obesity</li>
+											<li>Physical inactivity</li>
+											<li>Excess alcohol use</li>
+										</ul>
+									</p>
+									<p>
+										We have all of these high risk factors, among others, 
+										as independent variables in our data set. Applying multiple supervised and unsupervised models, 
+										we hope to find a model that will predict the presence of heart disease to a high degree of precision 
+										and balanced accuracy.
+									</p>
+									<p>
+										After testing several different models, we decided to use Logistic Regression to predict the probability of 
+										an individual with Heart Disease. Our final model can predict approximately 74% correctly whether an individual 
+										will have Heart Disease given the parameters included. We feel this is an acceptable cutoff as we risk overfitting 
+										our model with a higher accuracy rating, which is a common issue with decision trees (Figure1). 	
+									</p>
+									<a href="images/decision_tree_diag.png" class="image fit"><img src="images/decision_tree_diag.png" alt="Figure 1" /><p><b>Figure 1 - Decision Tree displaying most informative variables.</b></p></a>
+									<P>
+										Our best models have a 26% false negative rate. This is the more serious 
+										misclassification as there are people who have Heart Disease but may not be 
+										classified correctly.
+									</P>
+										
+									
+								</article>
+							</section>
+
+						<!-- Discovery and Data Prep -->
+						<section class="post">
+							<article>
+								<h2>Discovery and Data Preparation</h2>
+								<p>
+									Our group had specific criteria for our dataset. We wanted a dataset that could reflect a real-world problem
+									 and have at least 10 independent variables to work with. We found the heart disease dataset on Kaggle2 which
+									  met the criteria above. The RAW data was already well formatted; however, we did some data preparation to 
+									  allow us to dummy code in an easier manner. We started with our dependent variable heart disease and 17 
+									  independent variables (BMI, Smoking, Physical Health, etc.,). 	
+								</p>
+								<p>
+									The base dataset was over 350,000 rows which possessed a problem for our computational hardware. 
+									Although generally more data is better, as a group we decided to randomly down sample the data to 15,000 rows
+									 for computationally intensive models. The data was pre-formatted as a classification problem. Most columns where 
+									 structured as a “Yes/No” response aside from BMI (type: integer), Physical Health (type: integer), 
+									 Age Category (type: category), Race (type: category), General Health (type: category), and Sleep Time (type: integer). 
+									 Although the data was technically already dummy coded, we did edit all “Yes” responses to be 1 and all “No” responses as 0. 
+									 This allowed us to run the Dummies function in R without renaming several columns. The data was binned in the 
+									 Age Category for the decision tree to be less visually intensive, based on a simpler decision tree with Age Group
+									  as the sole predictor. Lastly, we removed predictors with zero variance which resulted in a dimension reduction 
+									  of 38 to 31.
+								</P>
+								<p>
+									This project could be used for medical knowledge and assist hospitals in potentially finding early onset heart disease 
+									in patients. By addressing this health problem early, the mortality rate could decrease.
+								</p>	
+							</article>
+						</section>
+
+						<!-- Model Planning and Building -->
+						<section class="post">
+							<article>
+								<h2>Model Planning and Building</h2>
+								<p>
+									Due to the nature of our problem, we needed to use classification models. 
+									As a group, we decided to test several supervised models as well as some unsupervised models. 
+									The list includes Logistic Regression (Logit), Quadratic Discriminant Analysis (QDA), 
+									Linear Discriminant Analysis (LDA), K-Nearest Neighbor (KNN), and Decision Trees (DT). For all of 
+									the supervised models we looked at the ROC curve as well as accuracy in prediction. 	
+								</p>
+								<p>
+									For training the models, we took a large majority (70% or 80%) of the data as training 
+									and used the remaining for testing.  We employed 10-fold cross validation which allowed us to 
+									significantly reduce the bias and variance as we used multiple random samples as well as all the 
+									data present. As stated in the Data Preparation section, we also had to create dummy variables for the data. 
+									This transformation turned our data from 18 columns to 38 columns (a significant increase). 
+									The purpose of this was to use an R package called Caret on the data. Caret can only communicate with 
+									numerical data and thus we needed to transform the data into a format that Caret can communicate with. 
+								</P>
+								<p>
+									We decided on these models as the majority are very easy to run as well as tune. For our supervised models 
+									we computed them using the down sampled dataset. As for decision tree and K-Means we decided it would be 
+									best to compute using the entire dataset. The Decision Tree was optimized with 29 splits because of a 
+									partition control of 1 split minimum. 
+								</p>	
+							</article>
+						</section>
+
+						<!-- Results and Performance -->
+						<section class="post">
+							<article>
+								<h2>Results and Performance</h2>
+								<p>
+									First, we will look at the outputs of our training models. 
+									From these models we will pick the best performer to move forward with the testing data. 
+								</p>
+
+								<!-- Logit -->
+								<h3>Logistic Regression</h3>
+								<p>Looking at some general statistics from <i>Figure 2A</i> we see that there is an extremely high false 
+									positive rate. Given the model also achieves a 91.41% accuracy on prediction this indicates that we 
+									need to tune the threshold for guessing “Yes/No”. </p>
+								<a href="images/log_rec_fig1.png" class="image"><img src="images/log_rec_fig1.png" alt="" /><p><b>Figure 2A - Logistic Regression Confusion Matrix</b></p></a>
+								<p>
+									<i>Figure 2B</i> gives us an ROC score for the logistic regression model of 82.41. 
+									This statistic will be used later as a performance comparison between different models we test.
+								</p>
+								<a href="images/log_reg_roc_score.png" class="image"><img src="images/log_reg_roc_score.png" alt="" /><p><b>Figure 2B - Logistic Regression Model Results</b></p></a>
+
+								<!-- KNN -->
+								<h3>K Nearest Neighbor</h3>
+								<p>The confusion matrix for the KNN model was very close in accuracy performance to 
+									the Logistic Regression model. Here we see a 91.38% accuracy score in predicting Heart Disease. 
+									Like the model above, we may need to tune the threshold and or balance the data. </p>
+								<a href="images/KNNConfMat.png" class="image"><img src="images/KNNConfMat.png" alt="" /><p><b>Figure 3A - KNN Confusion Matrix</b></p></a>
+								<p>Here we get the ROC score for different neighborhoods. From this output we see that when K=23 
+								we get an ROC score of 71.47. This will be used for later comparison against other models.
+								</p>
+								<a href="images/KNNResults.png" class="image"><img src="images/KNNResults.png" alt="" /><p><b>Figure 3B - KNN Results</b></p></a>
+								<p>From <i>Figure 3C</i> we can see that we should have approximately 11 neighbors. 
+									The deduction for this number is due to the elbow at 11. If we include too many neighbors, we may overfit our data.
+								</p>
+								<a href="images/KNNCurve.png" class="image"><img src="images/KNNCurve.png" alt="" /><p><b>Figure 3C - KNN Perf. with Different Neighborhoods</b></p></a>
+
+								<!-- LDA -->
+								<h3>Linear Discriminant Analysis</h3>
+								<p>The confusion matrix for the LDA model has high accuracy performance but lower than the previous two models. 
+									Here we see a 90.7% accuracy score in predicting heart disease. Although it is better at not 
+									defaulting to false positives, threshold adjustment may be necessary.</p>
+								<a href="images/LDAConfMat.png" class="image"><img src="images/LDAConfMat.png" alt="" /><p><b>Figure 4A - LDA Confusion Matrix</b></p></a>
+								<p>Our LDA model had an ROC score of 81.86 which will be used for comparison against other models.
+								</p>
+								<a href="images/LDAResults.png" class="image"><img src="images/LDAResults.png" alt="" /><p><b>Figure 4B - LDA Results</b></p></a>
+
+								<!-- QDA -->
+								<h3>Quadratic Discriminant Analysis</h3>
+								<p>Our QDA model gave us an ROC score of 80.38 which again will be used for comparison later against 
+									competing models.</p>
+								<a href="images/QDAResults.png" class="image"><img src="images/QDAResults.png" alt="" /><p><b>Figure 5 - QDA Results</b></p></a>
+								
+								<!-- Simple Decision Tree -->
+								<h3>Simple Decision Tree</h3>
+								<p>The Simple Decision Tree reflects 29 splits across the 18 variables. A +99% specificity rate and small 
+									sensitivity rate reflects the imbalanced classes found in the dataset. The 58.42% positive prediction 
+									rate and 75% AUC implies the decision tree can accurately predict heart disease significantly above a coin flip. </p>
+								<a href="images/DTResults.png" class="image"><img src="images/DTResults.png" alt="" /><p><b>Figure 6A - Decision Tree Results</b></p></a>
+								<a href="images/DTSensSpec.png" class="image"><img src="images/DTSensSpec.png" alt="" /><p><b>Figure 6B - Decision Tree Sensitivity and Specificity</b></p></a>
+								<a href="images/DTTree.png" class="image"><img src="images/DTTree.png" alt="" /><p><b>Figure 6C - Decision Tree</b></p></a>
+
+								<!-- Comparing Models -->
+								<h3>Comparing Models</h3>
+								<a href="images/ROCPerf.png" class="image"><img src="images/ROCPerf.png" alt="" /><p><b>Figure 7A - ROC Performance of Models</b></p></a>
+								<a href="images/SensitivityPerf.png" class="image"><img src="images/SensitivityPerf.png" alt="" /><p><b>Figure 7B - Sensitivity Performance of Models</b></p></a>
+								<a href="images/SpecifictyPerf.png" class="image"><img src="images/SpecifictyPerf.png" alt="" /><p><b>Figure 7C - Specificity Performance of Models</b></p></a>
+								<a href="images/ROCallModels.png" class="image"><img src="images/ROCallModels.png" alt="" /><p><b>Figure 7D - ROC Curve Performance of Models</b></p></a>
+								<p>Looking at <i>7A-C</i> we can get a breakdown of each model's ROC, Sensitivity, and Specificity. 
+									<i>Figure 7A</i> shows us that the Logit model has the best performance with LDA performing marginally worse. 
+									Also considering <i>Figure 7B and 7C</i>, we see that Logit has the tightest bounds. Given this information 
+									we also want to see a graphical representation of these statistics. <i>Figure 7D</i> gives us a breakdown of the 
+									ROC curve clearly showing Logit and LDA are very close, QDA performing slightly worse than LDA, and KNN 
+									performing much worse than the rest of the models. Given this information we will proceed with the Logistic 
+									Regression Model for the test set.</p>
+
+								<!-- Test Output -->
+								<h3>Test Output</h3>
+								<p>Now that we know what model we will be using, further tuning can be performed. Here we recalculate the threshold 
+									for our model to predict heart disease. With this recalculation we see that accuracy dropped from 91.4% to 73.5%. 
+									However, we became much better at predicting the negative class as well. </p>
+								<a href="images/TestResults.png" class="image"><img src="images/TestResults.png" alt="" /><p><b>Figure 8A - Logistic Regression Model with Recalculated Threshold</b></p></a>
+								<p>The Confusion Matrix on the test set was very similar in terms of accuracy to the train set. This was surprising 
+									as training indicators are not a guarantee that the test set will perform well. From the test set we got a 73.8% 
+									accuracy on predicting whether someone has heart disease. Our train set got 73.5% accuracy. 
+								</p>
+								<a href="images/TestConfMat.png" class="image"><img src="images/TestConfMat.png" alt="" /><p><b>Figure 8B - Test Confusion Matrix</b></p></a>
+								<a href="images/TestTrainPerf.png" class="image"><img src="images/TestTrainPerf.png" alt="" /><p><b>Figure 8C - Test and Train Performance</b></p></a>
+								<p><i>Figure 8C</i> plots the Training ROC against the Test ROC curve, we can see both are extremely close with the 
+									test set having slightly more variation. To clearly state which one is the better performer, the AUC was 
+									calculated (0.8248 for test, 0.8241 for train). From this we conclude that the test set performs .0007 better than the training set.
+								</p>
+							</article>
+						</section>
+
+						<!-- Discussion and Recommendations -->
+						<section class="post">
+							<article>
+								<h2>Discussion and Recommendations</h2>
+								<p>
+									Based on the results of this analysis on heart disease, the most important predictors found are somewhat dependent 
+									upon the model used. Our most accurate models were logistic regression and LDA, with LDA slightly performing better 
+									than QDA. The most significant attributes when predicting heart disease are age, general health, and a few other 
+									various factors. Age becomes a strong predictor in developing heart disease once someone begins their mid-50’s. 
+									Regression analysis as well as decision trees rank age as one of the strongest predictors, and physical health as good 
+									as if not better at predicting heart disease in some cases. Demographics also play a role in predicting this issue 
+									as both females and people previously diagnosed with Asthma, Type One Diabetes, or have had a stroke are far more 
+									likely to have also have heart disease. 	
+								</p>
+								<p>
+									The largest take away from this study is to be mindful of heart disease if you’re in an at-risk demographic. 
+									Controlling smoking and other factors that may lead to reduced risk of heart disease is crucial and being aware 
+									of that risk as early as possible is important as someone’s age and general health change over time 
+								</P>
+									
+							</article>
+						</section>
+
+						
+
+					</div>
+					
+				<!-- Footer -->
+					<footer id="footer">
+						<section>
+							<!--
+							<form method="post" action="#">
+								<div class="fields">
+									<div class="field">
+										<label for="name">Name</label>
+										<input type="text" name="name" id="name" />
+									</div>
+									<div class="field">
+										<label for="email">Email</label>
+										<input type="text" name="email" id="email" />
+									</div>
+									<div class="field">
+										<label for="message">Message</label>
+										<textarea name="message" id="message" rows="3"></textarea>
+									</div>
+								</div>
+								<ul class="actions">
+									<li><input type="submit" value="Send Message" /></li>
+								</ul>
+							</form>
+							--->
+						</section>
+						
+					</footer>
+
+				<!-- Copyright -->
+					<div id="copyright">
+						
+						<ul><li>Project completed in collaboration with Cid Brownell, Kyle Kintner, and Sebastien Beauvais</li></ul>
+						<ul><li>&copy; Website created by Sebastien Beauvais</li><li>Design: <a href="https://html5up.net">HTML5 UP</a></li></ul>
+					</div>
+
+			</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script src="assets/js/jquery.scrollex.min.js"></script>
+			<script src="assets/js/jquery.scrolly.min.js"></script>
+			<script src="assets/js/browser.min.js"></script>
+			<script src="assets/js/breakpoints.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<script src="assets/js/main.js"></script>
+
+	</body>
+</html>
